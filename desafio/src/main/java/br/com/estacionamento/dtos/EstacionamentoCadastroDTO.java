@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public class EstacionamentoCadastroDTO {
 
+    private Long id;
     private String nome;
     private String cnpj;
     private String endereco;
