@@ -3,7 +3,7 @@ package br.com.estacionamento.dtos;
 import lombok.Getter;
 
 @Getter
-public class EstacionamentoCadastroDTO {
+public class EstabelecimentoDTO {
 
     private Long id;
     private String nome;
