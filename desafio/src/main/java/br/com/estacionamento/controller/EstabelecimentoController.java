@@ -33,7 +33,7 @@ public class EstabelecimentoController {
 
         URI endereco = componentsBuilder.path("/estabelecimento/{id}").buildAndExpand(estabelecimentoDTO.getId()).toUri();
 
-        return ResponseEntity.created(endereco).body(estabelecimentoDTO);
+        return ResponseEntity.created(endereco).body(dto);
     }
 
 
