@@ -1,6 +1,5 @@
 package br.com.estacionamento.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,8 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.estacionamento.dtos.EstabelecimentoDTO;
 import br.com.estacionamento.model.Estabelecimento;
 import br.com.estacionamento.repository.EstabelecimentoRepository;
-
-import java.util.List;
+import jakarta.persistence.EntityNotFoundException;
 
 
 @Service
@@ -60,4 +58,11 @@ public class EstacionamentoService {
 
         return modelMapper.map(estabelecimento, EstabelecimentoDTO.class);
     }
+
+
+    public void excluir(Long id){
+        estabelecimentoRepository.deleteById(id);
+    }
+
+    
 }
