@@ -1,7 +1,9 @@
 package br.com.estacionamento.service;
 
+import br.com.estacionamento.service.exception.EstabelecimentoNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -54,15 +56,13 @@ public class EstacionamentoService {
     public EstabelecimentoDTO listarPorId(Long id) {
 
         Estabelecimento estabelecimento = estabelecimentoRepository.
-                findById(id).orElseThrow(() -> new EntityNotFoundException());
+                findById(id).orElseThrow(() -> new EstabelecimentoNotFoundException("Estabelecimento não encontrado"));
 
         return modelMapper.map(estabelecimento, EstabelecimentoDTO.class);
     }
 
-
-    public void excluir(Long id){
+    public void excluir(Long id) {
         estabelecimentoRepository.deleteById(id);
     }
 
-    
 }

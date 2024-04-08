@@ -34,28 +34,42 @@ public class EstabelecimentoController {
     @Transactional
     @PostMapping
     public ResponseEntity<EstabelecimentoDTO> cadastrar(@Valid @RequestBody EstabelecimentoDTO dto, UriComponentsBuilder componentsBuilder) {
-        EstabelecimentoDTO estabelecimentoDTO = estacionamentoService.cadastrar(dto);
+        EstabelecimentoDTO estabelecimentoDTO;
+
+        try {
+            estabelecimentoDTO = estacionamentoService.cadastrar(dto);
+        } catch (RuntimeException erro) {
+            return ResponseEntity.badRequest().body(new EstabelecimentoDTO(erro.getMessage()));
+        }
 
         URI endereco = componentsBuilder.path("/estabelecimento/{id}").buildAndExpand(estabelecimentoDTO.getId()).toUri();
-
-        return ResponseEntity.created(endereco).body(dto);
+        return ResponseEntity.created(endereco).body(estabelecimentoDTO);
     }
-
-
 
     @Transactional
     @PutMapping("/{id}")
-    public ResponseEntity<EstabelecimentoDTO>atualizar(@PathVariable @NotNull Long id ,@RequestBody @Valid EstabelecimentoDTO dto  ){
-                
-        EstabelecimentoDTO estabelecimentoAtualizado =  estacionamentoService.atualizar(id, dto);
+    public ResponseEntity<EstabelecimentoDTO> atualizar(@PathVariable @NotNull Long id ,@RequestBody @Valid EstabelecimentoDTO dto  ){
+        EstabelecimentoDTO estabelecimentoAtualizado;
+        try {
+            estabelecimentoAtualizado = estacionamentoService.atualizar(id, dto);
+        }
+        catch (RuntimeException erro) {
+            return ResponseEntity.badRequest().body(new EstabelecimentoDTO(erro.getMessage()));
+        }
 
         return ResponseEntity.status(HttpStatus.OK).body(estabelecimentoAtualizado);
     }
 
+
+
     @GetMapping
-     public Page<EstabelecimentoDTO> listar(@PageableDefault(size = 10)Pageable paginacao) {
-        return estacionamentoService.listar(paginacao);
-     }
+    public Page<EstabelecimentoDTO> listar(@PageableDefault(size = 10) Pageable paginacao) {
+        try {
+            return estacionamentoService.listar(paginacao);
+        } catch (RuntimeException erro) {
+            throw new RuntimeException("Erro ao listar o estabelecimento", erro);
+        }
+    }
 
      @GetMapping("/{id}")
      public ResponseEntity<EstabelecimentoDTO> detalhar(@PathVariable Long id) {
@@ -72,6 +86,5 @@ public class EstabelecimentoController {
 
           return ResponseEntity.noContent().build();
      }
-
 
 }

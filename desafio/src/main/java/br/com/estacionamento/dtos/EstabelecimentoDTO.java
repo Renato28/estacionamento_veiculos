@@ -12,4 +12,7 @@ public class EstabelecimentoDTO {
     private String telefone;
     private Integer quantidadeVagasMotos;
     private Integer quantidadeVagasCarros;
+
+    public EstabelecimentoDTO(String message) {
+    }
 }
