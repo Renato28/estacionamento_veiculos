@@ -1,15 +1,14 @@
 package br.com.estacionamento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "estabelecimento")
@@ -34,4 +33,7 @@ public class Estabelecimento {
     private Integer quantidadeVagasMotos;
     @NotNull(message = "Este campo é de preenchimento obrigatório")
     private Integer quantidadeVagasCarros;
+
+    @OneToMany(mappedBy = "estabelecimento")
+    private List<Veiculo> veiculos = new ArrayList<>();
 }

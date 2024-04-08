@@ -32,4 +32,7 @@ public class Veiculo {
   @Enumerated(EnumType.STRING)
   private Tipo tipo;
 
+  @ManyToOne
+  private Estabelecimento estabelecimento;
+
 }
