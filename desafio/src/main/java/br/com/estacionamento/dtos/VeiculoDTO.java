@@ -4,8 +4,12 @@ import br.com.estacionamento.model.Tipo;
 import lombok.Getter;
 
 @Getter
-public class VeiculoCadastroDTO {
+public class VeiculoDTO {
 
+    public VeiculoDTO(String message) {
+        //TODO Auto-generated constructor stub
+    }
+    private Long id;
     private String marca;
     private String modelo;
     private String cor;

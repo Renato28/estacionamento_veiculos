@@ -19,7 +19,7 @@ public class Veiculo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Long id;
   @NotNull(message = "Este campo é de preenchimento obrigatório")
   private String marca;
   @NotNull(message = "Este campo é de preenchimento obrigatório")
