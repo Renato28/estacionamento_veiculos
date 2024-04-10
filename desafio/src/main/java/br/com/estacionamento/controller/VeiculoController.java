@@ -42,21 +42,21 @@ public class VeiculoController {
             return ResponseEntity.badRequest().body(new VeiculoDTO(e.getMessage()));
         }
 
-        URI endereco = componentsBuilder.path("/veiculo/id").buildAndExpand(veiculoDTO.getId()).toUri();
-        return ResponseEntity.created(endereco).body(veiculoDTO);
+        URI endereco = componentsBuilder.path("/veiculo/{id}").buildAndExpand(veiculoDTO.getId()).toUri();
+        return ResponseEntity.created(endereco).body(dto);
     }
 
     @Transactional
     @PutMapping("/{id}")
     public ResponseEntity<VeiculoDTO> atualizar(@PathVariable @NotNull Long id, @RequestBody @Valid VeiculoDTO dto) {
-        VeiculoDTO veiculoDTO;;
+        VeiculoDTO veiculoDTO;
         try {
             veiculoDTO = veiculoService.atualizar(id, dto);
         } catch (RuntimeException erro) {
             return ResponseEntity.badRequest().body(new VeiculoDTO(erro.getMessage()));
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(veiculoDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 
     @GetMapping

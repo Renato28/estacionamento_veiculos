@@ -1,8 +1,12 @@
 package br.com.estacionamento.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class EstabelecimentoDTO {
 
     private Long id;
@@ -15,4 +19,5 @@ public class EstabelecimentoDTO {
 
     public EstabelecimentoDTO(String message) {
     }
+
 }

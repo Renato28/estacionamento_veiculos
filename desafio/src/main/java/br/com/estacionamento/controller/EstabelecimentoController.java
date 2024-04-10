@@ -61,7 +61,6 @@ public class EstabelecimentoController {
     }
 
 
-
     @GetMapping
     public Page<EstabelecimentoDTO> listar(@PageableDefault(size = 10) Pageable paginacao) {
         try {
@@ -80,7 +79,7 @@ public class EstabelecimentoController {
 
 
      @DeleteMapping("/{id}")
-     public ResponseEntity<EstabelecimentoDTO>excluir(@PathVariable @NotNull Long id){
+     public ResponseEntity<EstabelecimentoDTO> excluir(@PathVariable @NotNull Long id){
             
           estacionamentoService.excluir(id);
 
