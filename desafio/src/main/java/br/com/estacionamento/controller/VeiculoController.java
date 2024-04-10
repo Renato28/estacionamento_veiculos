@@ -60,12 +60,15 @@ public class VeiculoController {
     }
 
     @GetMapping
-    public Page<VeiculoDTO> listar(@PageableDefault(size = 10) Pageable paginacao) {
+    public ResponseEntity<Page<VeiculoDTO>> listar(@PageableDefault(size = 10) Pageable paginacao) {
+        Page<VeiculoDTO> veiculoDTO;
         try {
-            return veiculoService.listar(paginacao);
+            veiculoDTO = veiculoService.listar(paginacao);
         } catch (RuntimeException erro) {
             throw new RuntimeException("Erro ao listar o veiculo", erro);
         }
+
+        return ResponseEntity.status(HttpStatus.OK).body(veiculoDTO);
     }
 
     @GetMapping("/{id}")

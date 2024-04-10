@@ -62,12 +62,16 @@ public class EstabelecimentoController {
 
 
     @GetMapping
-    public Page<EstabelecimentoDTO> listar(@PageableDefault(size = 10) Pageable paginacao) {
+    public ResponseEntity<Page<EstabelecimentoDTO>> listar(@PageableDefault(size = 10) Pageable paginacao) {
+        Page<EstabelecimentoDTO> estabelecimentoDTO;
+
         try {
-            return estacionamentoService.listar(paginacao);
+            estabelecimentoDTO = estacionamentoService.listar(paginacao);
         } catch (RuntimeException erro) {
             throw new RuntimeException("Erro ao listar o estabelecimento", erro);
         }
+
+        return ResponseEntity.status(HttpStatus.OK).body(estabelecimentoDTO);
     }
 
      @GetMapping("/{id}")
