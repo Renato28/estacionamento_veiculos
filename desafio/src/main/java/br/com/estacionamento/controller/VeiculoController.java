@@ -1,10 +1,5 @@
 package br.com.estacionamento.controller;
 
-import br.com.estacionamento.service.VeiculoService;
-import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.estacionamento.dtos.VeiculoDTO;
+import br.com.estacionamento.service.VeiculoService;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/veiculos")
@@ -32,6 +31,7 @@ public class VeiculoController {
     @Autowired
     private VeiculoService veiculoService;
 
+    @Transactional
     @PostMapping
     public ResponseEntity<VeiculoDTO> cadastrar(@Valid @RequestBody VeiculoDTO dto, UriComponentsBuilder componentsBuilder) {
         VeiculoDTO veiculoDTO;
@@ -43,7 +43,7 @@ public class VeiculoController {
         }
 
         URI endereco = componentsBuilder.path("/veiculo/{id}").buildAndExpand(veiculoDTO.getId()).toUri();
-        return ResponseEntity.created(endereco).body(dto);
+        return ResponseEntity.created(endereco).body(veiculoDTO);
     }
 
     @Transactional
@@ -56,7 +56,7 @@ public class VeiculoController {
             return ResponseEntity.badRequest().body(new VeiculoDTO(erro.getMessage()));
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(dto);
+        return ResponseEntity.status(HttpStatus.OK).body(veiculoDTO);
     }
 
     @GetMapping
