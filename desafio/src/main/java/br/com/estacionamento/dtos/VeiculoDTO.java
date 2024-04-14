@@ -1,5 +1,6 @@
 package br.com.estacionamento.dtos;
 
+import br.com.estacionamento.model.Estabelecimento;
 import br.com.estacionamento.model.Tipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,8 @@ public class VeiculoDTO {
     private String cor;
     private String placa;
     private Tipo tipo;
-    private EstabelecimentoDTO estabelecimento;
+   
+    private Estabelecimento estabelecimento;
 
     public VeiculoDTO(String message) {
         //TODO Auto-generated constructor stub

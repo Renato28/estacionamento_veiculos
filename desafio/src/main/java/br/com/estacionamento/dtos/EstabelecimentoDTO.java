@@ -1,5 +1,8 @@
 package br.com.estacionamento.dtos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +21,8 @@ public class EstabelecimentoDTO {
     private String telefone;
     private Integer quantidadeVagasMotos;
     private Integer quantidadeVagasCarros;
+
+    private List<VeiculoDTO> veiculos = new ArrayList<>();
 
     public EstabelecimentoDTO(String message) {
     }
