@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import br.com.estacionamento.dtos.VeiculoDTO;
 import br.com.estacionamento.model.Veiculo;
 import br.com.estacionamento.repository.VeiculoRepository;
@@ -54,7 +55,7 @@ public class VeiculoService {
     }
 
     public void excluir (Long id){
-        veiculoRepository.deleteById(id);
+         veiculoRepository.deleteById(id);
     }
 
 }
