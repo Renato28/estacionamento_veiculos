@@ -87,4 +87,11 @@ public class VeiculoController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/find/{placa}")
+    public ResponseEntity<VeiculoDTO> findPlaca(@PathVariable String placa) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(veiculoService.findbyPlaca(placa));
+    }
+
 }
