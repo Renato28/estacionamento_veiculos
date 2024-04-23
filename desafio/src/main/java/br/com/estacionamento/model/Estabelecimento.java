@@ -41,10 +41,8 @@ public class Estabelecimento {
     @NotNull(message = "Este campo é de preenchimento obrigatório")
     private Integer quantidadeVagasCarros;
 
-    
-
-     
     @OneToMany(mappedBy="estabelecimento",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Veiculo> veiculos = new ArrayList<>();
+    
 }
 
