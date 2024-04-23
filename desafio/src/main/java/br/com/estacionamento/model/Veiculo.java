@@ -28,16 +28,10 @@ public class Veiculo {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @NotNull(message = "Este campo é de preenchimento obrigatório")
   private String marca;
-  @NotNull(message = "Este campo é de preenchimento obrigatório")
   private String modelo;
-  @NotNull(message = "Este campo é de preenchimento obrigatório")
   private String cor;
-  @NotNull(message = "Este campo é de preenchimento obrigatório")
   private String placa;
-  @NotNull(message = "Este campo é de preenchimento obrigatório")
-  @Enumerated(EnumType.STRING)
   private Tipo tipo;
 
   @ManyToOne
