@@ -20,8 +20,7 @@ public class VeiculoDTO {
     private String cor;
     private String placa;
     private Tipo tipo;
-   
-    private Estabelecimento estabelecimento;
+    private Long idEstabelecimento;
 
     public VeiculoDTO(String message) {
         //TODO Auto-generated constructor stub

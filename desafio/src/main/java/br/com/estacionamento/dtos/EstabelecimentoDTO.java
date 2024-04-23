@@ -22,8 +22,6 @@ public class EstabelecimentoDTO {
     private Integer quantidadeVagasMotos;
     private Integer quantidadeVagasCarros;
 
-    private List<VeiculoDTO> veiculos = new ArrayList<>();
-
     public EstabelecimentoDTO(String message) {
     }
 
