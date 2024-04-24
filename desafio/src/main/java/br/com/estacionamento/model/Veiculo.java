@@ -1,16 +1,6 @@
 package br.com.estacionamento.model;
 
-import org.hibernate.annotations.ManyToAny;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +22,8 @@ public class Veiculo {
   private String modelo;
   private String cor;
   private String placa;
+
+  @Enumerated(EnumType.STRING)
   private Tipo tipo;
 
   @ManyToOne
