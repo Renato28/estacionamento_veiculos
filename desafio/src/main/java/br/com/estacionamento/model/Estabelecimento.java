@@ -38,5 +38,8 @@ public class Estabelecimento {
     @OneToMany(mappedBy="estabelecimento",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Veiculo> veiculos = new ArrayList<>();
     
+    //@OneToMany(mappedBy="registro_estabelecimento",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    //private List<RegistroEstacionamento>registro = new ArrayList<>();
+    
 }
 
