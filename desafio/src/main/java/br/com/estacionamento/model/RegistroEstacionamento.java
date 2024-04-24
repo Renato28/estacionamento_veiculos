@@ -33,7 +33,6 @@ public class RegistroEstacionamento {
     private Veiculo veiculo;
 
     private LocalDateTime data;
-   
 
     @Enumerated(EnumType.STRING)
     private TipoRegistro tipoRegistro;

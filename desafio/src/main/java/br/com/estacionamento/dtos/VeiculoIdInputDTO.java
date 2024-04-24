@@ -1,4 +1,4 @@
-package br.com.estacionamento.dtos.input;
+package br.com.estacionamento.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
