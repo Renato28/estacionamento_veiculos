@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.estacionamento.dtos.EstabelecimentoDTO;
-import br.com.estacionamento.service.EstacionamentoService;
+import br.com.estacionamento.service.EstabelecimentoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
@@ -29,7 +29,7 @@ import jakarta.validation.constraints.NotNull;
 public class EstabelecimentoController {
 
     @Autowired
-    public EstacionamentoService estacionamentoService;
+    public EstabelecimentoService estabelecimentoService;
 
     @Transactional
     @PostMapping
@@ -37,7 +37,7 @@ public class EstabelecimentoController {
         EstabelecimentoDTO estabelecimentoDTO;
 
         try {
-            estabelecimentoDTO = estacionamentoService.cadastrar(dto);
+            estabelecimentoDTO = estabelecimentoService.cadastrar(dto);
         } catch (RuntimeException erro) {
             return ResponseEntity.badRequest().body(new EstabelecimentoDTO(erro.getMessage()));
         }
@@ -51,7 +51,7 @@ public class EstabelecimentoController {
     public ResponseEntity<EstabelecimentoDTO> atualizar(@PathVariable @NotNull Long id ,@RequestBody @Valid EstabelecimentoDTO dto  ){
         EstabelecimentoDTO estabelecimentoAtualizado;
         try {
-            estabelecimentoAtualizado = estacionamentoService.atualizar(id, dto);
+            estabelecimentoAtualizado = estabelecimentoService.atualizar(id, dto);
         }
         catch (RuntimeException erro) {
             return ResponseEntity.badRequest().body(new EstabelecimentoDTO(erro.getMessage()));
@@ -66,7 +66,7 @@ public class EstabelecimentoController {
         Page<EstabelecimentoDTO> estabelecimentoDTO;
 
         try {
-            estabelecimentoDTO = estacionamentoService.listar(paginacao);
+            estabelecimentoDTO = estabelecimentoService.listar(paginacao);
         } catch (RuntimeException erro) {
             throw new RuntimeException("Erro ao listar o estabelecimento", erro);
         }
@@ -76,7 +76,7 @@ public class EstabelecimentoController {
 
      @GetMapping("/{id}")
      public ResponseEntity<EstabelecimentoDTO> detalhar(@PathVariable Long id) {
-        EstabelecimentoDTO dto = estacionamentoService.listarPorId(id);
+        EstabelecimentoDTO dto = estabelecimentoService.listarPorId(id);
 
         return ResponseEntity.ok(dto);
      }
@@ -85,7 +85,7 @@ public class EstabelecimentoController {
      @DeleteMapping("/{id}")
      public ResponseEntity<EstabelecimentoDTO> excluir(@PathVariable @NotNull Long id){
             
-          estacionamentoService.excluir(id);
+          estabelecimentoService.excluir(id);
 
           return ResponseEntity.noContent().build();
      }

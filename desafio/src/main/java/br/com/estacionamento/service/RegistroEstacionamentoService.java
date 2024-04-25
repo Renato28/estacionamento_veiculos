@@ -1,5 +1,7 @@
 package br.com.estacionamento.service;
 
+import br.com.estacionamento.dtos.EstabelecimentoDTO;
+import br.com.estacionamento.dtos.VeiculoDTO;
 import br.com.estacionamento.dtos.request.RegistroEstacionamentoRequestDTO;
 import br.com.estacionamento.dtos.response.RegistroEstacionamentoResponseDTO;
 import br.com.estacionamento.model.Estabelecimento;
@@ -23,7 +25,7 @@ public class RegistroEstacionamentoService {
    private RegistroEstacionamentoRepository registroEstacionamentoRepository ;
 
    @Autowired
-   private EstacionamentoService estacionamentoService;
+   private EstabelecimentoService estabelecimentoService;
 
    @Autowired
    private VeiculoService veiculoService;
@@ -52,11 +54,13 @@ public class RegistroEstacionamentoService {
    }
 
    private Estabelecimento buscarEstabelecimento(Long idEstabelecimento) {
-      return estacionamentoService.buscarOuFalhar(idEstabelecimento);
+      EstabelecimentoDTO dto = estabelecimentoService.listarPorId(idEstabelecimento);
+      return mapper.map(dto, Estabelecimento.class);
    }
 
    private Veiculo buscarVeiculo(Long idVeiculo) {
-      return veiculoService.buscarOuFalhar(idVeiculo);
+      VeiculoDTO dto = veiculoService.listarPorId(idVeiculo);
+      return mapper.map(dto, Veiculo.class);
    }
 
 }

@@ -74,9 +74,4 @@ public class VeiculoService {
         throw new VeiculoNotFoundException("Essa placa nao existe");
     }
 
-    public Veiculo buscarOuFalhar(Long id) {
-        return veiculoRepository.findById(id)
-            .orElseThrow(() -> new EstabelecimentoNotFoundException("Veiculo não encontrado"));
-    }
-
 }

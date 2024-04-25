@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class EstacionamentoService {
+public class EstabelecimentoService {
 
     @Autowired
     private ModelMapper modelMapper;
@@ -60,11 +60,6 @@ public class EstacionamentoService {
 
     public void excluir(Long id) {
         estabelecimentoRepository.deleteById(id);
-    }
-
-    public Estabelecimento buscarOuFalhar(Long id) {
-        return estabelecimentoRepository.findById(id)
-            .orElseThrow(() -> new EstabelecimentoNotFoundException("Estabelecimento não encontrado"));
     }
 
 }
