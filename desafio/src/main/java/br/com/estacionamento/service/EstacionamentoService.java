@@ -1,17 +1,14 @@
 package br.com.estacionamento.service;
 
-import br.com.estacionamento.service.exception.EstabelecimentoNotFoundException;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import br.com.estacionamento.dtos.EstabelecimentoDTO;
 import br.com.estacionamento.model.Estabelecimento;
 import br.com.estacionamento.repository.EstabelecimentoRepository;
-import jakarta.persistence.EntityNotFoundException;
+import br.com.estacionamento.service.exception.EstabelecimentoNotFoundException;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 
 @Service
@@ -63,6 +60,11 @@ public class EstacionamentoService {
 
     public void excluir(Long id) {
         estabelecimentoRepository.deleteById(id);
+    }
+
+    public Estabelecimento buscarOuFalhar(Long id) {
+        return estabelecimentoRepository.findById(id)
+            .orElseThrow(() -> new EstabelecimentoNotFoundException("Estabelecimento não encontrado"));
     }
 
 }

@@ -1,17 +1,17 @@
 package br.com.estacionamento.service;
 
-import java.util.List;
-
+import br.com.estacionamento.dtos.VeiculoDTO;
+import br.com.estacionamento.model.Veiculo;
+import br.com.estacionamento.repository.VeiculoRepository;
+import br.com.estacionamento.service.exception.EstabelecimentoNotFoundException;
+import br.com.estacionamento.service.exception.VeiculoNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.estacionamento.dtos.VeiculoDTO;
-import br.com.estacionamento.model.Veiculo;
-import br.com.estacionamento.repository.VeiculoRepository;
-import br.com.estacionamento.service.exception.VeiculoNotFoundException;
+import java.util.List;
 
 @Service
 public class VeiculoService {
@@ -72,6 +72,11 @@ public class VeiculoService {
         }
 
         throw new VeiculoNotFoundException("Essa placa nao existe");
+    }
+
+    public Veiculo buscarOuFalhar(Long id) {
+        return veiculoRepository.findById(id)
+            .orElseThrow(() -> new EstabelecimentoNotFoundException("Veiculo não encontrado"));
     }
 
 }

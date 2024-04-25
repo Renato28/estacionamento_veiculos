@@ -1,6 +1,7 @@
 package br.com.estacionamento.controller;
 
-import br.com.estacionamento.dtos.RegistroEstabelecimentoDTO;
+import br.com.estacionamento.dtos.request.RegistroEstacionamentoRequestDTO;
+import br.com.estacionamento.dtos.response.RegistroEstacionamentoResponseDTO;
 import br.com.estacionamento.service.RegistroEstacionamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,14 +19,14 @@ public class RegistroEstacionamentoController {
     private  RegistroEstacionamentoService registroEstacionamentoService;
 
     @PostMapping("/entrada")
-    public ResponseEntity<RegistroEstabelecimentoDTO>registrarEntrada(@RequestBody RegistroEstabelecimentoDTO dto){
-        RegistroEstabelecimentoDTO registroEntrada = registroEstacionamentoService.registrarEntrada(dto);
+    public ResponseEntity<RegistroEstacionamentoResponseDTO> registrarEntrada(@RequestBody RegistroEstacionamentoRequestDTO dto){
+        RegistroEstacionamentoResponseDTO registroEntrada = registroEstacionamentoService.registrarEntrada(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(registroEntrada);
     }
 
     @PostMapping("/saida")
-    public ResponseEntity<RegistroEstabelecimentoDTO>registrarSaida(@RequestBody RegistroEstabelecimentoDTO dto){
-        RegistroEstabelecimentoDTO registroSaida = registroEstacionamentoService.registrarSaida(dto);
+    public ResponseEntity<RegistroEstacionamentoResponseDTO> registrarSaida(@RequestBody RegistroEstacionamentoRequestDTO dto){
+        RegistroEstacionamentoResponseDTO registroSaida = registroEstacionamentoService.registrarSaida(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(registroSaida);
     }
 
